@@ -1,0 +1,2 @@
+# EventLiveData
+一个可以防止数据倒灌的MutableLiveData子类

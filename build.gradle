@@ -1,25 +1,17 @@
 buildscript {
-    ext.kotlin_version = "1.4.0"
+    ext.kotlin_version = "1.6.21"
     repositories {
-        maven { url 'http://maven.aliyun.com/repository/google' }
-        maven { url 'http://maven.aliyun.com/repository/jcenter' }
-        maven { url 'http://maven.aliyun.com/repository/center' }
         google()
         jcenter()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:4.0.1"
+        classpath "com.android.tools.build:gradle:7.4.2"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
-        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
     }
 }
 
 allprojects {
     repositories {
-        maven { url 'http://maven.aliyun.com/repository/google' }
-        maven { url 'http://maven.aliyun.com/repository/jcenter' }
-        maven { url 'http://maven.aliyun.com/repository/center' }
         google()
         jcenter()
     }

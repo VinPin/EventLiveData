@@ -1,3 +1,0 @@
-include ':eventlivedata'
-include ':app'
-rootProject.name = "EventLiveData"

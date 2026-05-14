@@ -1,18 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:padding="16dp">
+
+  <TextView
+    android:id="@+id/tvTitle"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="wrap_content"
+    android:text="EventLiveData 测试 Demo"
+    android:textSize="20sp"
+    android:textStyle="bold"
+    android:gravity="center"
+    app:layout_constraintTop_toTopOf="parent" />
+
+  <Button
+    android:id="@+id/btnSendEvent"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:text="发送事件"
+    android:layout_marginTop="16dp"
+    app:layout_constraintTop_toBottomOf="@id/tvTitle"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toStartOf="@id/btnSendStickyEvent" />
+
+  <Button
+    android:id="@+id/btnSendStickyEvent"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:text="发送粘性事件"
+    android:layout_marginStart="16dp"
+    android:layout_marginLeft="16dp"
+    app:layout_constraintTop_toTopOf="@id/btnSendEvent"
+    app:layout_constraintStart_toEndOf="@id/btnSendEvent"
+    app:layout_constraintEnd_toEndOf="parent" />
+
+  <Button
+    android:id="@+id/btnObserve"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:text="普通观察"
+    android:layout_marginTop="16dp"
+    app:layout_constraintTop_toBottomOf="@id/btnSendEvent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toStartOf="@id/btnObserveSticky" />
+
+  <Button
+    android:id="@+id/btnObserveSticky"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:text="粘性观察"
+    android:layout_marginStart="16dp"
+    android:layout_marginLeft="16dp"
+    app:layout_constraintTop_toTopOf="@id/btnObserve"
+    app:layout_constraintStart_toEndOf="@id/btnObserve"
+    app:layout_constraintEnd_toEndOf="parent" />
+
+  <TextView
+    android:id="@+id/tvNormalLabel"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="普通观察者收到的消息:"
+    android:textSize="16sp"
+    android:textStyle="bold"
+    android:layout_marginTop="16dp"
+    app:layout_constraintTop_toBottomOf="@id/btnObserve" />
+
+  <ScrollView
+    android:id="@+id/scrollNormal"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:background="#f0f0f0"
+    app:layout_constraintTop_toBottomOf="@id/tvNormalLabel"
+    app:layout_constraintBottom_toTopOf="@id/tvStickyLabel"
+    app:layout_constraintHeight_percent="0.25">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+      android:id="@+id/tvNormalObserver"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:textSize="14sp"
+      android:padding="8dp" />
+  </ScrollView>
+
+  <TextView
+    android:id="@+id/tvStickyLabel"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="粘性观察者收到的消息:"
+    android:textSize="16sp"
+    android:textStyle="bold"
+    android:layout_marginTop="16dp"
+    app:layout_constraintTop_toBottomOf="@id/scrollNormal" />
+
+  <ScrollView
+    android:id="@+id/scrollSticky"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:background="#f0f0f0"
+    app:layout_constraintTop_toBottomOf="@id/tvStickyLabel"
+    app:layout_constraintBottom_toTopOf="@id/tvDescription"
+    app:layout_constraintHeight_percent="0.25">
+
+    <TextView
+      android:id="@+id/tvStickyObserver"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:textSize="14sp"
+      android:padding="8dp" />
+  </ScrollView>
+
+  <TextView
+    android:id="@+id/tvDescription"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="说明:\n1. 先发送事件，再点击普通观察，普通观察者不会收到之前的事件\n2. 先发送事件，再点击粘性观察，粘性观察者会收到之前的事件"
+    android:textSize="14sp"
+    android:textColor="#666666"
+    app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,16 +1,17 @@
+@file:Suppress("UnstableApiUsage")
+
 plugins {
-    id("com.android.library")
-    id("kotlin-android")
-    id("kotlin-android-extensions")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
 }
 
 android {
-    compileSdk = 30
-    buildToolsVersion = "30.0.2"
+    namespace = "com.vinpin.eventlivedata"
+    compileSdk = 31
 
     defaultConfig {
-        minSdk = 21
-        consumerProguardFiles("consumer-rules.pro")
+        minSdk = 16
+        consumerProguardFiles += listOf(file("consumer-rules.pro"))
     }
 
     buildTypes {
@@ -23,14 +24,22 @@ android {
         }
     }
 
-    lintOptions {
-        isAbortOnError = false
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = "11"
     }
 }
 
 dependencies {
-    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.6.21")
-    implementation("androidx.core:core-ktx:1.3.1")
-    implementation("androidx.appcompat:appcompat:1.2.0")
+    api(libs.androidx.core.ktx)
+    api(libs.androidx.appcompat)
+}
+
+tasks.register<Jar>("sourcesJar") {
+    archiveClassifier.set("sources")
+    from(android.sourceSets.getByName("main").java.srcDirs)
 }

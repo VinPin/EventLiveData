@@ -1,17 +1,18 @@
+@file:Suppress("UnstableApiUsage")
+
 plugins {
-    id("com.android.application")
-    id("kotlin-android")
-    id("kotlin-android-extensions")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
 }
 
 android {
-    compileSdk = 30
-    buildToolsVersion = "30.0.2"
+    namespace = "com.vinpin.eventlivedata.sample"
+    compileSdk = 31
 
     defaultConfig {
         applicationId = "com.vinpin.eventlivedata.sample"
-        minSdk = 21
-        targetSdk = 30
+        minSdk = 16
+        targetSdk = 31
         versionCode = 1
         versionName = "1.0"
     }
@@ -25,13 +26,23 @@ android {
             )
         }
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    kotlinOptions {
+        jvmTarget = "11"
+    }
 }
 
 dependencies {
-    implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.6.21")
-    implementation("androidx.core:core-ktx:1.3.1")
-    implementation("androidx.appcompat:appcompat:1.2.0")
-    implementation("androidx.constraintlayout:constraintlayout:1.1.3")
     implementation(project(":eventlivedata"))
+    implementation(libs.android.material)
+    implementation(libs.constraintlayout)
 }
